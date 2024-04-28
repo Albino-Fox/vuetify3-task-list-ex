@@ -1,14 +1,18 @@
 <template>
-  <p>Here's prop's text:</p>
-  <!-- <p>{{ text }}</p> -->
+  <div>
+    {{ text }}
+    <button>x</button>
+  </div>
 </template>
 
 <script>
 export default {
   name: "TaskListItem",
 
-  data: () => ({
-    // commentary
-  }),
+  props: {
+    text: { type: String, default: "" },
+  },
+
+  data: () => ({}),
 };
 </script>

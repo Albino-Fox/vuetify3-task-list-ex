@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <v-toolbar title="vuut" />
     <v-main>
       <router-view />
     </v-main>
@@ -12,7 +11,11 @@ export default {
   name: "App",
 
   data: () => ({
-    //
+    // todos:
+    // [ { taskText: "",
+    // isImportant: false,
+    // isCompleted: false, } ]
+    // [],
   }),
 };
 </script>
