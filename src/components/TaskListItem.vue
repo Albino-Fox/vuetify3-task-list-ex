@@ -1,7 +1,11 @@
 <template>
-  <div>
-    {{ text }}
-    <button>x</button>
+  <div
+    :class="{
+      'pa-4 ma-4': isImportant,
+      'text-decoration-line-through': isDone,
+    }"
+  >
+    <p>{{ text }}</p>
   </div>
 </template>
 
@@ -11,6 +15,8 @@ export default {
 
   props: {
     text: { type: String, default: "" },
+    isDone: { type: Boolean, default: false },
+    isImportant: { type: Boolean, default: false },
   },
 
   data: () => ({}),
