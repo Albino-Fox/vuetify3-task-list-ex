@@ -1,5 +1,9 @@
 <template>
-  <v-form id="task-form">
+  <v-form
+    id="task-form"
+    @keydown.enter.prevent
+    @keydown.enter="sendTaskInfo"
+  >
     <v-container class="d-flex flex-row align-center">
       <v-text-field
         v-model="taskText"

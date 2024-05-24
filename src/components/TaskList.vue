@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex flex-column ma-3 pa-3">
     <task-list-form @add-task="addTask" />
-    <div>
+    <div style="max-height: 72vh; overflow-y: auto">
       <v-card
         v-for="task in tasks"
         :key="task.id"
@@ -11,17 +11,18 @@
         class="d-flex flex-row justify-space-between ma-3 pa-3 ga-2"
       >
         <task-list-item
+          class="pa-1 flex-grow-1"
+          style="overflow-x: auto"
           :text="task.text"
           :is-done="task.isDone"
           :is-important="task.isImportant"
-          class="pa-1 flex-grow-1"
           @click="task.isDone = !task.isDone"
         />
         <v-btn
-          :icon="task.isImportant ? 'mdi-star' : 'mdi-star-outline'"
           variant="tonal"
           rounded="lg"
           size="x-small"
+          :icon="task.isImportant ? 'mdi-star' : 'mdi-star-outline'"
           @click="toggleImportant(task)"
         />
         <v-btn
@@ -71,7 +72,10 @@ export default {
       info.isImportant = !info.isImportant;
     },
     removeTask(id) {
-      this.tasks.splice(this.tasks.findIndex((cur) => cur.id === id));
+      this.tasks.splice(
+        this.tasks.findIndex((cur) => cur.id === id),
+        1
+      );
     },
   },
 };
