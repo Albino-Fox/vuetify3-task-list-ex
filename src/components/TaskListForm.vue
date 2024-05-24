@@ -45,7 +45,7 @@ export default {
 
   methods: {
     validate() {
-      return this.taskText.length > 0;
+      return this.taskText.length > 0 && this.taskText.trim() !== "";
     },
     sendTaskInfo() {
       if (this.validate()) {
