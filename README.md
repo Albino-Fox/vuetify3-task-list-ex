@@ -1,24 +1,30 @@
-# vuetify-todo
+# Список задач на Vue3.js+Vuetify3
 
-## Project setup
+Очередное учебное творение
+
+## Особенности
+
+- `Enter` на форме ввода добавляет задачу
+- Нажатие на центр задачи (текст/карточка) метит её выполненной (зачёркивает)
+- Избранные отмечаются полоской слева
+- Если "высота" задач вот-вот будет больше экрана, включается прокручивание
+  - И выключается, когда "высота" достаточно уменьшится
+- Ограничение на описание задачи 250 символов
+
+## Установка
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Скрипт для разработки, с обновлением файлов рекомпилирует сервер
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Скрипт для готового проекта
+
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
