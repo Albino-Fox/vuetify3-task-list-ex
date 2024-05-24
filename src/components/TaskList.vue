@@ -6,9 +6,9 @@
         v-for="task in tasks"
         :key="task.id"
         :class="{
-          'pa-4 ma-4': task.isImportant,
+          'border-s-xl': task.isImportant,
         }"
-        class="d-flex flex-row justify-space-between ma-3 pa-3"
+        class="d-flex flex-row justify-space-between ma-3 pa-3 ga-2"
       >
         <task-list-item
           :text="task.text"
@@ -16,6 +16,13 @@
           :is-important="task.isImportant"
           class="pa-1 flex-grow-1"
           @click="task.isDone = !task.isDone"
+        />
+        <v-btn
+          :icon="task.isImportant ? 'mdi-star' : 'mdi-star-outline'"
+          variant="tonal"
+          rounded="lg"
+          size="x-small"
+          @click="toggleImportant(task)"
         />
         <v-btn
           icon="mdi-close"
@@ -45,13 +52,14 @@ export default {
     tasks: [],
   }),
 
-  created() {
-    this.addTask({
-      text: "holy moly",
-      isImportant: false,
-      isDone: false,
-    });
-  },
+  // INFO: for testing:
+  // created() {
+  //   this.addTask({
+  //     text: "holy moly",
+  //     isImportant: false,
+  //     isDone: false,
+  //   });
+  // },
 
   methods: {
     addTask(info) {
@@ -59,11 +67,11 @@ export default {
       this.nextId++;
       this.tasks.push(info);
     },
+    toggleImportant(info) {
+      info.isImportant = !info.isImportant;
+    },
     removeTask(id) {
-      this.tasks.splice(
-        this.tasks.findIndex((cur) => cur.id === id),
-        1
-      );
+      this.tasks.splice(this.tasks.findIndex((cur) => cur.id === id));
     },
   },
 };

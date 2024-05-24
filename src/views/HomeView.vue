@@ -1,10 +1,12 @@
 <template>
-  <v-card
-    class="ma-16"
-    elevation="8"
-  >
-    <task-list />
-  </v-card>
+  <div class="d-flex justify-center">
+    <v-card
+      class="mt-16 minmax"
+      elevation="8"
+    >
+      <task-list />
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -24,6 +26,6 @@ export default defineComponent({
 
 <style>
 .minmax {
-  width: minmax(25%, 90%);
+  width: max(50vw, 450px);
 }
 </style>

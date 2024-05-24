@@ -1,11 +1,13 @@
 <template>
   <div
     :class="{
-      'pa-4 ma-4': isImportant,
-      'text-decoration-line-through': isDone,
+      // 'text-amber-darken-4': isImportant,
+      'text-decoration-line-through text-grey': isDone,
     }"
   >
-    <p>{{ text }}</p>
+    <p>
+      {{ text }}
+    </p>
   </div>
 </template>
 
