@@ -39,9 +39,12 @@ export default {
   name: "TaskListForm",
 
   computed: {
-    ...mapState({
-      maxCharacters: "maxCharacters",
-    }),
+    // ...mapState({
+    //   maxCharacters: "maxCharacters",
+    // }),
+    maxCharacters() {
+      return this.$store.state.taskForm.maxCharacters;
+    },
     isImportant: {
       get() {
         return this.$store.state.isImportant;
@@ -52,7 +55,7 @@ export default {
     },
     taskText: {
       get() {
-        return this.$store.state.taskText;
+        return this.$store.state.taskForm.text;
       },
       set(text) {
         this.setTaskText(text);

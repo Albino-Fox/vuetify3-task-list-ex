@@ -1,16 +1,20 @@
 import { createStore } from "vuex";
 import taskList from "@/api/index";
+import taskForm from "@/store/modules/taskForm";
 
 const store = createStore({
+  modules: {
+    taskForm: taskForm,
+  },
+
   state: {
     tasks: [],
     nextId: 0,
 
     //TaskListForm
-    taskText: "",
     isImportant: false,
-    maxCharacters: 250,
   },
+
   getters: {
     tasks(state) {
       return state.tasks;
@@ -28,9 +32,9 @@ const store = createStore({
       });
     },
     addTask(context) {
-      if (context.getters.isValid(context.state.taskText)) {
+      if (context.getters.isValid(context.state.taskForm.text)) {
         let task = {
-          text: context.state.taskText,
+          text: context.state.taskForm.text,
           isImportant: context.state.isImportant,
           id: context.state.nextId,
           isDone: false,
@@ -82,11 +86,11 @@ const store = createStore({
 
     //TaskListForm
     setTaskText(state, text) {
-      state.taskText = text;
+      state.taskForm.text = text;
     },
     resetTaskForm(state) {
       state.isImportant = false;
-      state.taskText = "";
+      state.taskForm.text = "";
     },
     setFormImportant(state, condition) {
       state.isImportant = condition;
