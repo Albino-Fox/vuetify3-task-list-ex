@@ -39,9 +39,6 @@ export default {
   name: "TaskListForm",
 
   computed: {
-    // ...mapState({
-    //   maxCharacters: "taskForm/maxCharacters",
-    // }),
     maxCharacters() {
       return this.$store.state.taskForm.maxCharacters;
     },
@@ -69,7 +66,6 @@ export default {
     }),
     ...mapActions({
       addTask: "addTask",
-      // setFormImportant: "setFormImportant",
       setTaskText: "setTaskText",
     }),
     setFormImportant(condition) {

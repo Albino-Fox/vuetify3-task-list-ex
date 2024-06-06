@@ -47,9 +47,11 @@ export default {
     TaskListItem,
     TaskListForm,
   },
+
   computed: {
     ...mapState({ tasks: "tasks" }),
   },
+
   created() {
     this.fetchTasks(this.tasks);
   },
