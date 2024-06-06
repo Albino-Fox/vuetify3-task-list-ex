@@ -5,7 +5,7 @@ module.exports = {
     // "plugin:vuetify/recommended",
   ],
   rules: {
-    "vue/no-undef-properties": 2,
+    "vue/no-undef-properties": 1,
     // "vue/no-undef-components": 2,
   },
 };
