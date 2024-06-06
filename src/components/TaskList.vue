@@ -41,9 +41,6 @@
 import TaskListItem from "../components/TaskListItem.vue";
 import TaskListForm from "../components/TaskListForm.vue";
 
-import taskList from "../api/index.js";
-import store from "../store/index.js";
-
 export default {
   name: "TaskList",
 
@@ -53,16 +50,15 @@ export default {
   },
   computed: {
     tasks() {
-      return store.state.tasks;
+      return this.$store.getters.tasks;
     },
     nextId() {
-      return store.state.nextId;
+      return this.$store.state.nextId;
     },
   },
   created() {
-    taskList.getTasks((tasks) => {
-      store.commit("setTasks", tasks);
-    });
+    this.$store.dispatch("fetchTasks", this.tasks);
+    console.log(this.$store.getters.tasks);
   },
 
   methods: {

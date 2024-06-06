@@ -1,12 +1,12 @@
 const _tasks = [
   {
-    id: "1",
+    id: "0",
     text: "holy moly",
     isImportant: false,
     isDone: false,
   },
   {
-    id: "2",
+    id: "1",
     text: "holyyy moly",
     isImportant: false,
     isDone: false,
@@ -15,6 +15,6 @@ const _tasks = [
 
 export default {
   getTasks(cb) {
-    setTimeout(() => cb(_tasks), 100);
+    cb(_tasks);
   },
 };
