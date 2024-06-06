@@ -2,7 +2,7 @@
   <v-form
     id="task-form"
     @keydown.enter.prevent
-    @keydown.enter="sendTaskInfo"
+    @keydown.enter="addTask"
   >
     <v-container class="d-flex flex-row align-center">
       <v-text-field
@@ -22,7 +22,7 @@
           />
           <v-btn
             type="button"
-            @click="sendTaskInfo"
+            @click="addTask"
           >
             Add
           </v-btn>
@@ -37,31 +37,38 @@ import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "TaskListForm",
-  emits: ["addTask"],
 
   computed: {
     ...mapState({
-      taskText: "taskText",
-      isImportant: "isImportant",
-      maxCharacters: 250,
+      maxCharacters: "maxCharacters",
     }),
+    isImportant: {
+      get() {
+        return this.$store.state.isImportant;
+      },
+      set(condition) {
+        this.setFormImportant(condition);
+      },
+    },
+    taskText: {
+      get() {
+        return this.$store.state.taskText;
+      },
+      set(text) {
+        this.setTaskText(text);
+      },
+    },
   },
 
   methods: {
-    validate() {
-      return this.taskText.length > 0 && this.taskText.trim() !== "";
-    },
-    sendTaskInfo() {
-      if (this.validate()) {
-        let task = {
-          text: this.taskText,
-          isImportant: this.isImportant,
-        };
-        this.$emit("addTask", task);
-        this.taskText = "";
-        this.isImportant = false;
-      }
-    },
+    ...mapGetters({
+      isValid: "isValid",
+    }),
+    ...mapActions({
+      addTask: "addTask",
+      setFormImportant: "setFormImportant",
+      setTaskText: "setTaskText",
+    }),
   },
 };
 </script>

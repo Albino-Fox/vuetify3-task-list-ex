@@ -16,7 +16,9 @@ const store = createStore({
       return state.tasks;
     },
 
-    validate() {},
+    isValid() {
+      return (taskText) => taskText.length > 0 && taskText.trim() !== "";
+    },
   },
 
   actions: {
@@ -25,9 +27,16 @@ const store = createStore({
         commit("setTasks", tasks);
       });
     },
-    addTask(context, info) {
-      info.id = context.state.nextId;
-      context.commit("addTask", info);
+    addTask(context) {
+      if (context.getters.isValid(context.state.taskText)) {
+        let task = {
+          text: context.state.taskText,
+          isImportant: context.state.isImportant,
+          id: context.state.nextId,
+        };
+        context.commit("addTask", task);
+        context.commit("resetTaskForm");
+      }
     },
     removeTask({ commit }, id) {
       commit("removeTask", id);
@@ -37,16 +46,11 @@ const store = createStore({
     },
 
     //TaskListForm:
-    sendTaskInfo() {
-      if (this.validate()) {
-        let task = {
-          text: this.taskText,
-          isImportant: this.isImportant,
-        };
-        this.$emit("addTask", task);
-        this.taskText = "";
-        this.isImportant = false;
-      }
+    setTaskText(context, text) {
+      context.commit("setTaskText", text);
+    },
+    setFormImportant({ commit }, condition) {
+      commit("setFormImportant", condition);
     },
   },
 
@@ -67,6 +71,18 @@ const store = createStore({
     },
     toggleImportant(state, task) {
       task.isImportant = !task.isImportant;
+    },
+
+    //TaskListForm
+    setTaskText(state, text) {
+      state.taskText = text;
+    },
+    resetTaskForm(state) {
+      state.isImportant = false;
+      state.taskText = "";
+    },
+    setFormImportant(state, condition) {
+      state.isImportant = condition;
     },
   },
 });

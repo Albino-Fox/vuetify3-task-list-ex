@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column ma-3 pa-3">
-    <task-list-form @add-task="addTask" />
+    <task-list-form />
     <div style="max-height: 72vh; overflow-y: auto">
       <v-card
         v-for="task in tasks"
@@ -59,7 +59,6 @@ export default {
   methods: {
     ...mapActions({
       fetchTasks: "fetchTasks",
-      addTask: "addTask",
       toggleImportant: "toggleImportant",
       removeTask: "removeTask",
     }),
