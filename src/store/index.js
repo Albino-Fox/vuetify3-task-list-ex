@@ -16,10 +16,6 @@ const store = createStore({
     tasks(state) {
       return state.tasks;
     },
-
-    isValid() {
-      return (taskText) => taskText.length > 0 && taskText.trim() !== "";
-    },
   },
 
   actions: {
