@@ -5,11 +5,18 @@ const store = createStore({
   state: {
     tasks: [],
     nextId: 0,
+
+    //TaskListForm
+    taskText: "",
+    isImportant: false,
+    maxCharacters: 250,
   },
   getters: {
     tasks(state) {
       return state.tasks;
     },
+
+    validate() {},
   },
 
   actions: {
@@ -27,6 +34,19 @@ const store = createStore({
     },
     toggleImportant({ commit }, info) {
       commit("toggleImportant", info);
+    },
+
+    //TaskListForm:
+    sendTaskInfo() {
+      if (this.validate()) {
+        let task = {
+          text: this.taskText,
+          isImportant: this.isImportant,
+        };
+        this.$emit("addTask", task);
+        this.taskText = "";
+        this.isImportant = false;
+      }
     },
   },
 

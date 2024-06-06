@@ -20,7 +20,5 @@ export default {
     isDone: { type: Boolean, default: false },
     isImportant: { type: Boolean, default: false },
   },
-
-  data: () => ({}),
 };
 </script>

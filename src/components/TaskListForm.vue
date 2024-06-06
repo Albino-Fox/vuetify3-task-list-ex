@@ -33,15 +33,19 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions } from "vuex";
+
 export default {
   name: "TaskListForm",
   emits: ["addTask"],
 
-  data: () => ({
-    taskText: "",
-    isImportant: false,
-    maxCharacters: 250,
-  }),
+  computed: {
+    ...mapState({
+      taskText: "taskText",
+      isImportant: "isImportant",
+      maxCharacters: 250,
+    }),
+  },
 
   methods: {
     validate() {
