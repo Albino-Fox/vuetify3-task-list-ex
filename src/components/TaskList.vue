@@ -13,8 +13,7 @@
         <task-list-item
           class="pa-1 flex-grow-1"
           style="overflow-x: auto"
-          :text="task.text"
-          :is-done="task.isDone"
+          :task="task"
           @click="toggleDone(task)"
         />
         <v-btn

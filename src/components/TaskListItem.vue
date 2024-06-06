@@ -1,11 +1,11 @@
 <template>
   <div
     :class="{
-      'text-decoration-line-through text-grey': isDone,
+      'text-decoration-line-through text-grey': task.isDone,
     }"
   >
     <p>
-      {{ text }}
+      {{ task.text }}
     </p>
   </div>
 </template>
@@ -15,8 +15,7 @@ export default {
   name: "TaskListItem",
 
   props: {
-    text: { type: String, default: "" },
-    isDone: { type: Boolean, default: false },
+    task: { type: Object, default: () => {}, required: true },
   },
 };
 </script>
