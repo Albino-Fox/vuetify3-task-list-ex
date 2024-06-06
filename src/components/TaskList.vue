@@ -50,26 +50,19 @@ export default {
     TaskListForm,
   },
   computed: {
-    ...mapState({ tasks: (state) => state.tasks }),
+    ...mapState({ tasks: "tasks" }),
   },
   created() {
-    // since eslint in trying to kill my brain by ignoring vue rules
-    // eslint-disable-next-line vue/no-undef-properties
     this.fetchTasks(this.tasks);
   },
 
   methods: {
-    ...mapActions({ fetchTasks: "fetchTasks" }),
-
-    addTask(info) {
-      this.$store.dispatch("addTask", info);
-    },
-    toggleImportant(info) {
-      this.$store.commit("toggleImportant", info);
-    },
-    removeTask(id) {
-      this.$store.dispatch("removeTask", id);
-    },
+    ...mapActions({
+      fetchTasks: "fetchTasks",
+      addTask: "addTask",
+      toggleImportant: "toggleImportant",
+      removeTask: "removeTask",
+    }),
   },
 };
 </script>

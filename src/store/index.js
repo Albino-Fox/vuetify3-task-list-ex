@@ -25,6 +25,9 @@ const store = createStore({
     removeTask({ commit }, id) {
       commit("removeTask", id);
     },
+    toggleImportant({ commit }, info) {
+      commit("toggleImportant", info);
+    },
   },
 
   mutations: {
