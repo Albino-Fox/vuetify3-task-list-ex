@@ -1,12 +1,10 @@
 import { createStore } from "vuex";
 import data from "@/api/index";
 import taskForm from "@/store/modules/taskForm";
-import taskList from "@/store/modules/taskList";
 
 const store = createStore({
   modules: {
     taskForm: taskForm,
-    taskList: taskList,
   },
 
   state: {
@@ -17,6 +15,10 @@ const store = createStore({
   getters: {
     tasks(state) {
       return state.tasks;
+    },
+
+    isValid() {
+      return (taskText) => taskText.length > 0 && taskText.trim() !== "";
     },
   },
 
@@ -30,7 +32,7 @@ const store = createStore({
       if (context.getters.isValid(context.state.taskForm.text)) {
         let task = {
           text: context.state.taskForm.text,
-          isImportant: context.state.isImportant,
+          isImportant: context.state.taskForm.isImportant,
           id: context.state.nextId,
           isDone: false,
         };
