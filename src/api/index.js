@@ -8,8 +8,8 @@ const _tasks = [
   {
     id: "1",
     text: "holyyy moly",
-    isImportant: false,
-    isDone: false,
+    isImportant: true,
+    isDone: true,
   },
 ];
 
