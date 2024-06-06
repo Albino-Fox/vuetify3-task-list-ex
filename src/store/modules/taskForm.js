@@ -6,14 +6,12 @@ const taskForm = {
   },
 
   getters: {
-    //
     isValid() {
       return (text) => text.length > 0 && text.trim() !== "";
     },
   },
 
   actions: {
-    //
     setTaskText(context, text) {
       context.commit("setTaskText", text);
     },
@@ -23,7 +21,6 @@ const taskForm = {
   },
 
   mutations: {
-    //
     setTaskText(state, text) {
       state.text = text;
     },
