@@ -40,6 +40,7 @@
 <script>
 import TaskListItem from "../components/TaskListItem.vue";
 import TaskListForm from "../components/TaskListForm.vue";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "TaskList",
@@ -49,15 +50,17 @@ export default {
     TaskListForm,
   },
   computed: {
-    tasks() {
-      return this.$store.getters.tasks;
-    },
+    ...mapState({ tasks: (state) => state.tasks }),
   },
   created() {
-    this.$store.dispatch("fetchTasks", this.tasks);
+    // since eslint in trying to kill my brain by ignoring vue rules
+    // eslint-disable-next-line vue/no-undef-properties
+    this.fetchTasks(this.tasks);
   },
 
   methods: {
+    ...mapActions({ fetchTasks: "fetchTasks" }),
+
     addTask(info) {
       this.$store.dispatch("addTask", info);
     },
