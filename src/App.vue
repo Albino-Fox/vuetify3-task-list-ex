@@ -9,13 +9,5 @@
 <script>
 export default {
   name: "App",
-
-  data: () => ({
-    // todos:
-    // [ { taskText: "",
-    // isImportant: false,
-    // isCompleted: false, } ]
-    // [],
-  }),
 };
 </script>
