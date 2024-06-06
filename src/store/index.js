@@ -18,6 +18,13 @@ const store = createStore({
         commit("setTasks", tasks);
       });
     },
+    addTask(context, info) {
+      info.id = context.state.nextId;
+      context.commit("addTask", info);
+    },
+    removeTask({ commit }, id) {
+      commit("removeTask", id);
+    },
   },
 
   mutations: {
@@ -26,9 +33,13 @@ const store = createStore({
     },
     addTask(state, task) {
       state.tasks.push(task);
-    },
-    incrementId(state) {
       state.nextId++;
+    },
+    removeTask(state, id) {
+      state.tasks.splice(
+        state.tasks.findIndex((cur) => cur.id === id),
+        1
+      );
     },
   },
 });

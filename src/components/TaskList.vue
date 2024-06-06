@@ -52,29 +52,20 @@ export default {
     tasks() {
       return this.$store.getters.tasks;
     },
-    nextId() {
-      return this.$store.state.nextId;
-    },
   },
   created() {
     this.$store.dispatch("fetchTasks", this.tasks);
-    console.log(this.$store.getters.tasks);
   },
 
   methods: {
     addTask(info) {
-      info.id = this.nextId;
-      this.nextId++;
-      this.tasks.push(info);
+      this.$store.dispatch("addTask", info);
     },
     toggleImportant(info) {
       info.isImportant = !info.isImportant;
     },
     removeTask(id) {
-      this.tasks.splice(
-        this.tasks.findIndex((cur) => cur.id === id),
-        1
-      );
+      this.$store.dispatch("removeTask", id);
     },
   },
 };
