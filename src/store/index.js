@@ -33,6 +33,7 @@ const store = createStore({
           text: context.state.taskText,
           isImportant: context.state.isImportant,
           id: context.state.nextId,
+          isDone: false,
         };
         context.commit("addTask", task);
         context.commit("resetTaskForm");
@@ -41,8 +42,11 @@ const store = createStore({
     removeTask({ commit }, id) {
       commit("removeTask", id);
     },
-    toggleImportant({ commit }, info) {
-      commit("toggleImportant", info);
+    toggleImportant({ commit }, task) {
+      commit("toggleImportant", task);
+    },
+    toggleDone({ commit }, task) {
+      commit("toggleDone", task);
     },
 
     //TaskListForm:
@@ -71,6 +75,9 @@ const store = createStore({
     },
     toggleImportant(state, task) {
       task.isImportant = !task.isImportant;
+    },
+    toggleDone(state, task) {
+      task.isDone = !task.isDone;
     },
 
     //TaskListForm

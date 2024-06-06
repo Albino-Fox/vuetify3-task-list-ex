@@ -16,7 +16,7 @@
           :text="task.text"
           :is-done="task.isDone"
           :is-important="task.isImportant"
-          @click="task.isDone = !task.isDone"
+          @click="toggleDone(task)"
         />
         <v-btn
           variant="tonal"
@@ -61,6 +61,7 @@ export default {
       fetchTasks: "fetchTasks",
       toggleImportant: "toggleImportant",
       removeTask: "removeTask",
+      toggleDone: "toggleDone",
     }),
   },
 };
