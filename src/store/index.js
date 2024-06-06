@@ -30,6 +30,7 @@ const store = createStore({
   mutations: {
     setTasks(state, tasks) {
       state.tasks = tasks;
+      state.nextId = tasks.length;
     },
     addTask(state, task) {
       state.tasks.push(task);
@@ -40,6 +41,9 @@ const store = createStore({
         state.tasks.findIndex((cur) => cur.id === id),
         1
       );
+    },
+    toggleImportant(state, task) {
+      task.isImportant = !task.isImportant;
     },
   },
 });

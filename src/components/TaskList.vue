@@ -62,7 +62,7 @@ export default {
       this.$store.dispatch("addTask", info);
     },
     toggleImportant(info) {
-      info.isImportant = !info.isImportant;
+      this.$store.commit("toggleImportant", info);
     },
     removeTask(id) {
       this.$store.dispatch("removeTask", id);
