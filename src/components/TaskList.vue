@@ -41,6 +41,9 @@
 import TaskListItem from "../components/TaskListItem.vue";
 import TaskListForm from "../components/TaskListForm.vue";
 
+import taskList from "../api/index.js";
+import store from "../store/index.js";
+
 export default {
   name: "TaskList",
 
@@ -48,19 +51,19 @@ export default {
     TaskListItem,
     TaskListForm,
   },
-  data: () => ({
-    nextId: 0,
-    tasks: [],
-  }),
-
-  // INFO: for testing:
-  // created() {
-  //   this.addTask({
-  //     text: "holy moly",
-  //     isImportant: false,
-  //     isDone: false,
-  //   });
-  // },
+  computed: {
+    tasks() {
+      return store.state.tasks;
+    },
+    nextId() {
+      return store.state.nextId;
+    },
+  },
+  created() {
+    taskList.getTasks((tasks) => {
+      store.commit("setTasks", tasks);
+    });
+  },
 
   methods: {
     addTask(info) {
