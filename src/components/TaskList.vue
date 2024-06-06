@@ -15,7 +15,6 @@
           style="overflow-x: auto"
           :text="task.text"
           :is-done="task.isDone"
-          :is-important="task.isImportant"
           @click="toggleDone(task)"
         />
         <v-btn

@@ -1,7 +1,6 @@
 <template>
   <div
     :class="{
-      // 'text-amber-darken-4': isImportant,
       'text-decoration-line-through text-grey': isDone,
     }"
   >
@@ -18,7 +17,6 @@ export default {
   props: {
     text: { type: String, default: "" },
     isDone: { type: Boolean, default: false },
-    isImportant: { type: Boolean, default: false },
   },
 };
 </script>
