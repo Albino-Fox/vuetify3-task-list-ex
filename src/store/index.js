@@ -1,33 +1,28 @@
 import { createStore } from "vuex";
-import taskList from "@/api/index";
+import data from "@/api/index";
 import taskForm from "@/store/modules/taskForm";
+import taskList from "@/store/modules/taskList";
 
 const store = createStore({
   modules: {
     taskForm: taskForm,
+    taskList: taskList,
   },
 
   state: {
     tasks: [],
     nextId: 0,
-
-    //TaskListForm
-    isImportant: false,
   },
 
   getters: {
     tasks(state) {
       return state.tasks;
     },
-
-    isValid() {
-      return (taskText) => taskText.length > 0 && taskText.trim() !== "";
-    },
   },
 
   actions: {
     fetchTasks({ commit }) {
-      taskList.getTasks((tasks) => {
+      data.getTasks((tasks) => {
         commit("setTasks", tasks);
       });
     },
@@ -40,7 +35,7 @@ const store = createStore({
           isDone: false,
         };
         context.commit("addTask", task);
-        context.commit("resetTaskForm");
+        context.commit("resetTaskForm", null, { root: true });
       }
     },
     removeTask({ commit }, id) {
@@ -51,14 +46,6 @@ const store = createStore({
     },
     toggleDone({ commit }, task) {
       commit("toggleDone", task);
-    },
-
-    //TaskListForm:
-    setTaskText(context, text) {
-      context.commit("setTaskText", text);
-    },
-    setFormImportant({ commit }, condition) {
-      commit("setFormImportant", condition);
     },
   },
 
@@ -82,18 +69,6 @@ const store = createStore({
     },
     toggleDone(state, task) {
       task.isDone = !task.isDone;
-    },
-
-    //TaskListForm
-    setTaskText(state, text) {
-      state.taskForm.text = text;
-    },
-    resetTaskForm(state) {
-      state.isImportant = false;
-      state.taskForm.text = "";
-    },
-    setFormImportant(state, condition) {
-      state.isImportant = condition;
     },
   },
 });

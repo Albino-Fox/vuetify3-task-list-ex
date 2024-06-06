@@ -40,14 +40,14 @@ export default {
 
   computed: {
     // ...mapState({
-    //   maxCharacters: "maxCharacters",
+    //   maxCharacters: "taskForm/maxCharacters",
     // }),
     maxCharacters() {
       return this.$store.state.taskForm.maxCharacters;
     },
     isImportant: {
       get() {
-        return this.$store.state.isImportant;
+        return this.$store.state.taskForm.isImportant;
       },
       set(condition) {
         this.setFormImportant(condition);
@@ -69,9 +69,14 @@ export default {
     }),
     ...mapActions({
       addTask: "addTask",
-      setFormImportant: "setFormImportant",
+      // setFormImportant: "setFormImportant",
       setTaskText: "setTaskText",
     }),
+    setFormImportant(condition) {
+      return this.$store.dispatch("setFormImportant", condition, {
+        root: true,
+      });
+    },
   },
 };
 </script>
